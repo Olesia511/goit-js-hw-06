@@ -8,22 +8,19 @@
 Для додавання стилів використовуй CSS-класи valid і invalid, 
 які ми вже додали у вихідні файли завдання.   */
 
-const inputTextRef = document.querySelector('input#validation-input');
-const inputTextLengthDefault = Number(inputTextRef.getAttribute('data-length')); 
-
+const inputTextRef = document.querySelector("input#validation-input");
+const inputTextLengthDefault = Number(inputTextRef.getAttribute("data-length"));
 
 inputTextRef.addEventListener("blur", () => {
-    const inputLength = inputTextRef.value.length;
+  const inputLength = inputTextRef.value.trim().length;
 
-    if (inputLength > 0 && inputLength !== inputTextLengthDefault) {
-        inputTextRef.classList.add('invalid')
-        inputTextRef.classList.remove('valid')
-    }
-
-    else if (inputLength === inputTextLengthDefault) {
-        inputTextRef.classList.add('valid')
-        inputTextRef.classList.remove('invalid')
-    } 
-        
-    else {inputTextRef.classList = ''}
-    });
+  if (inputLength > 0 && inputLength !== inputTextLengthDefault) {
+    inputTextRef.classList.add("invalid");
+    inputTextRef.classList.remove("valid");
+  } else if (inputLength === inputTextLengthDefault) {
+    inputTextRef.classList.add("valid");
+    inputTextRef.classList.remove("invalid");
+  } else {
+    inputTextRef.classList = "";
+  }
+});
