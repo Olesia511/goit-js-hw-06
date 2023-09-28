@@ -1,4 +1,3 @@
-
 /* Напиши скрипт створення і очищення колекції елементів.
 
 1- Користувач вводить кількість елементів в input і натискає кнопку Створити,
@@ -17,36 +16,35 @@
 3- Створи функцію destroyBoxes(), яка очищає вміст div#boxes, 
 у такий спосіб видаляючи всі створені елементи.  */
 
-const boxesEl = document.querySelector('#boxes');
-const controlsBtn = document.querySelector('#controls')
+const boxesEl = document.querySelector("#boxes");
+const controlsBtn = document.querySelector("#controls");
 const inputEl = controlsBtn.children[0];
 const createEl = controlsBtn.children[1];
 const destroyEl = controlsBtn.children[2];
+let currentSize = 20;
 
-createEl.addEventListener('click', createBoxes);
-destroyEl.addEventListener('click', destroyBoxes);
-
+createEl.addEventListener("click", createBoxes);
+destroyEl.addEventListener("click", destroyBoxes);
 
 function createBoxes() {
-
   const amount = Number(inputEl.value);
-  let string = '';
-  let size = 20;
+
+  let string = "";
+  let size = 10;
 
   for (let i = 1; i <= amount; i += 1) {
-    size += 10;
-    string += `<div style="width: ${size}px; height: ${size}px; background-color:${getRandomHexColor()};"></div>`;    
+    currentSize += size;
+    string += `<div style="width: ${currentSize}px; height: ${currentSize}px; background-color:${getRandomHexColor()};"></div>`;
   }
 
-  boxesEl.insertAdjacentHTML('beforeend', string)
-  
-  }
+  boxesEl.insertAdjacentHTML("beforeend", string);
+}
 
 function destroyBoxes() {
   boxesEl.innerHTML = "";
-  inputEl.value = '';
-  
-};
+  inputEl.value = "";
+  currentSize = 20;
+}
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
